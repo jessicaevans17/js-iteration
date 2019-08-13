@@ -62,6 +62,11 @@
  *    // your code here
  * }
  */
+const yelling = array => {
+  return array.map(word => {
+    return word.toUpperCase()
+  })
+}
 
 // ...
 
@@ -71,7 +76,11 @@
  * numbers as an argument and returns a new array with all
  * the numbers multiplied by 2
  */
-
+const doubleTrouble = arrayOfNumbers => {
+  return arrayOfNumbers.map(value => {
+    return value * 2
+  })
+}
 // ...
 
 /*
@@ -79,21 +88,31 @@
  * strings as an argument and returns a new array with each string
  * suffixed with " is at index X" where X is the index of the element
  */
-
+const stringyIndexes = arrayOfStrings => {
+  return arrayOfStrings.map(string => {
+    return `${string} is at index ${arrayOfStrings.indexOf(string)}`
+  })
+}
 // ...
 
 /*
  * Define a function onlyTheEvenSurvive that accepts an array of
  * numbers and returns only the elements that are even
  */
-
+const onlyTheEvenSurvive = arrayOfNumbers => {
+  return arrayOfNumbers.filter(number => {
+    return number % 2 === 0
+  })
+}
 // ...
 
 /*
  * Define a function onlyTheEvenIndexedSurvive that accepts an array of
  * numbers and returns only the elements at indexes that are even
  */
-
+const onlyTheEvenIndexedSurvive = arrayOfNumbers => {
+  return arrayOfNumbers.filter((value, index) => !(index % 2))
+}
 // ...
 
 /*
@@ -109,7 +128,15 @@
  *   score: 99
  * }
  */
-
+const bestMoviesOfTheYear = (arrayOfMovies, year) => {
+  return arrayOfMovies
+    .filter(movies => {
+      return movies.score > 90 && movies.year === year
+    })
+    .map(movie => {
+      return movie.name
+    })
+}
 // ...
 
 /*
@@ -117,7 +144,16 @@
  * numbers and returns true if every element of the array is
  * odd.
  */
-
+const everyoneIsOdd = arrayOfNumbers => {
+  const oddNumbers = arrayOfNumbers.filter(value => {
+    return value % 2 !== 0
+  })
+  if (arrayOfNumbers.length === oddNumbers.length) {
+    return true
+  } else {
+    return false
+  }
+}
 // ...
 
 /*
@@ -125,7 +161,14 @@
  * strings and returns the one string that contains the word
  * `needle` inside
  */
-
+const findTheNeedle = arrayOfStrings => {
+  const newString = arrayOfStrings.filter(string => {
+    if (string.includes("needle")) {
+      return string
+    }
+  })
+  return newString[0]
+}
 // ...
 
 /*
@@ -133,7 +176,9 @@
  * strings and returns the index of the string that contains
  *  the word `needle` inside
  */
-
+const findTheNeedleIndex = arrayOfStrings => {
+  return arrayOfStrings.findIndex(value => value.includes("needle"))
+}
 // ...
 
 /*
@@ -141,7 +186,15 @@
  * strings and returns true if at least one string is exactly
  * four characters long
  */
-
+const someoneToLove = arrayOfStrings => {
+  const newArray = arrayOfStrings.forEach(value => {
+    const newValue = value.length
+    return newValue
+  })
+  if (newArray % 2 !== 0) {
+    return false
+  }
+}
 // ...
 
 /*
@@ -185,41 +238,43 @@
 
 /* eslint-disable no-undef */
 
-import test from 'ava'
+import test from "ava"
 
 const ensureDefined = (t, method) => {
-  if (eval(`typeof ${method}`) !== 'function') {
-    t.fail(`\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`)
+  if (eval(`typeof ${method}`) !== "function") {
+    t.fail(
+      `\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`
+    )
   }
 }
 
-test('Function Check', t => ensureDefined(t, 'yelling'))
-test('yelling()', t => {
-  t.deepEqual(yelling(['now', 'is', 'the', 'time']), [
-    'NOW',
-    'IS',
-    'THE',
-    'TIME'
+test("Function Check", t => ensureDefined(t, "yelling"))
+test("yelling()", t => {
+  t.deepEqual(yelling(["now", "is", "the", "time"]), [
+    "NOW",
+    "IS",
+    "THE",
+    "TIME"
   ])
 })
 
-test('Function Check', t => ensureDefined(t, 'doubleTrouble'))
-test('doubleTrouble()', t => {
+test("Function Check", t => ensureDefined(t, "doubleTrouble"))
+test("doubleTrouble()", t => {
   t.deepEqual(doubleTrouble([2, 3, 9, 0, -5]), [4, 6, 18, 0, -10])
 })
 
-test('Function Check', t => ensureDefined(t, 'stringyIndexes'))
-test('stringyIndexes', t => {
-  t.deepEqual(stringyIndexes(['how', 'now', 'brown', 'cow']), [
-    'how is at index 0',
-    'now is at index 1',
-    'brown is at index 2',
-    'cow is at index 3'
+test("Function Check", t => ensureDefined(t, "stringyIndexes"))
+test("stringyIndexes", t => {
+  t.deepEqual(stringyIndexes(["how", "now", "brown", "cow"]), [
+    "how is at index 0",
+    "now is at index 1",
+    "brown is at index 2",
+    "cow is at index 3"
   ])
 })
 
-test('Function Check', t => ensureDefined(t, 'onlyTheEvenSurvive'))
-test('onlyTheEvenSurvive', t => {
+test("Function Check", t => ensureDefined(t, "onlyTheEvenSurvive"))
+test("onlyTheEvenSurvive", t => {
   t.deepEqual(onlyTheEvenSurvive([42, 50, 100, 5, -43, 17, 44]), [
     42,
     50,
@@ -228,8 +283,8 @@ test('onlyTheEvenSurvive', t => {
   ])
 })
 
-test('Function Check', t => ensureDefined(t, 'onlyTheEvenIndexedSurvive'))
-test('onlyTheEvenIndexedSurvive', t => {
+test("Function Check", t => ensureDefined(t, "onlyTheEvenIndexedSurvive"))
+test("onlyTheEvenIndexedSurvive", t => {
   t.deepEqual(
     onlyTheEvenIndexedSurvive([
       31,
@@ -300,59 +355,59 @@ test('onlyTheEvenIndexedSurvive', t => {
   )
 })
 
-test('Function Check', t => ensureDefined(t, 'bestMoviesOfTheYear'))
-test('bestMoviesOfTheYear', t => {
+test("Function Check", t => ensureDefined(t, "bestMoviesOfTheYear"))
+test("bestMoviesOfTheYear", t => {
   const movies = [
-    { name: 'The Grand Budapest Hotel', year: 2014, score: 91 },
-    { name: 'Birdman', year: 2014, score: 91 },
-    { name: 'Transformers: Age of Extinction', year: 2014, score: 18 },
-    { name: 'Rage', year: 2014, score: 14 },
-    { name: 'Get Out', year: 2017, score: 99 },
-    { name: 'Justice League', year: 2017, score: 40 },
-    { name: 'Ghost in the Shell', year: 2017, score: 46 },
-    { name: 'The Big Sick', year: 2017, score: 98 }
+    { name: "The Grand Budapest Hotel", year: 2014, score: 91 },
+    { name: "Birdman", year: 2014, score: 91 },
+    { name: "Transformers: Age of Extinction", year: 2014, score: 18 },
+    { name: "Rage", year: 2014, score: 14 },
+    { name: "Get Out", year: 2017, score: 99 },
+    { name: "Justice League", year: 2017, score: 40 },
+    { name: "Ghost in the Shell", year: 2017, score: 46 },
+    { name: "The Big Sick", year: 2017, score: 98 }
   ]
 
   t.deepEqual(bestMoviesOfTheYear(movies, 2014), [
-    'The Grand Budapest Hotel',
-    'Birdman'
+    "The Grand Budapest Hotel",
+    "Birdman"
   ])
 
-  t.deepEqual(bestMoviesOfTheYear(movies, 2017), ['Get Out', 'The Big Sick'])
+  t.deepEqual(bestMoviesOfTheYear(movies, 2017), ["Get Out", "The Big Sick"])
 
   t.deepEqual(bestMoviesOfTheYear(movies, 2001), [])
 })
 
-test('Function Check', t => ensureDefined(t, 'everyoneIsOdd'))
-test('everyoneIsOdd', t => {
+test("Function Check", t => ensureDefined(t, "everyoneIsOdd"))
+test("everyoneIsOdd", t => {
   t.is(everyoneIsOdd([9, 15, 27, 101, 33]), true)
   t.is(everyoneIsOdd([9, 23, 3, 4, 77]), false)
 })
 
-test('Function Check', t => ensureDefined(t, 'findTheNeedle'))
-test('findTheNeedle', t => {
+test("Function Check", t => ensureDefined(t, "findTheNeedle"))
+test("findTheNeedle", t => {
   t.is(
-    findTheNeedle(['one', 'time', 'there was a needle at', 'the market']),
-    'there was a needle at'
+    findTheNeedle(["one", "time", "there was a needle at", "the market"]),
+    "there was a needle at"
   )
 })
 
-test('Function Check', t => ensureDefined(t, 'findTheNeedleIndex'))
-test('findTheNeedleIndex', t => {
+test("Function Check", t => ensureDefined(t, "findTheNeedleIndex"))
+test("findTheNeedleIndex", t => {
   t.is(
-    findTheNeedleIndex(['one', 'time', 'there was a needle at', 'the market']),
+    findTheNeedleIndex(["one", "time", "there was a needle at", "the market"]),
     2
   )
 })
 
-test('Function Check', t => ensureDefined(t, 'someoneToLove'))
-test('someoneToLove()', t => {
-  t.is(someoneToLove(['how', 'now', 'brown', 'cow']), false)
-  t.is(someoneToLove(['how', 'now', 'blue', 'cow']), true)
+test("Function Check", t => ensureDefined(t, "someoneToLove"))
+test("someoneToLove()", t => {
+  t.is(someoneToLove(["how", "now", "brown", "cow"]), false)
+  t.is(someoneToLove(["how", "now", "blue", "cow"]), true)
 })
 
-test('Function Check', t => ensureDefined(t, 'mapYourself'))
-test('mapYourself()', t => {
+test("Function Check", t => ensureDefined(t, "mapYourself"))
+test("mapYourself()", t => {
   const originalMap = Array.prototype.map
 
   Array.prototype.map = () => []
@@ -363,8 +418,8 @@ test('mapYourself()', t => {
   Array.prototype.map = originalMap
 })
 
-test('Function Check', t => ensureDefined(t, 'filterYourself'))
-test('filterYourself()', t => {
+test("Function Check", t => ensureDefined(t, "filterYourself"))
+test("filterYourself()", t => {
   const original = Array.prototype.filter
 
   Array.prototype.filter = () => []
@@ -374,8 +429,8 @@ test('filterYourself()', t => {
   Array.prototype.filter = original
 })
 
-test('Function Check', t => ensureDefined(t, 'everyYourself'))
-test('everyYourself()', t => {
+test("Function Check", t => ensureDefined(t, "everyYourself"))
+test("everyYourself()", t => {
   const original = Array.prototype.every
 
   Array.prototype.every = () => undefined
