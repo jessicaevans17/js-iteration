@@ -186,14 +186,14 @@ const findTheNeedleIndex = arrayOfStrings => {
  * strings and returns true if at least one string is exactly
  * four characters long
  */
-const someoneToLove = arrayOfStrings => {
-  const newArray = arrayOfStrings.forEach(value => {
-    const newValue = value.length
-    return newValue
-  })
-  if (newArray % 2 !== 0) {
-    return false
+const someoneToLove = array => {
+  let inLove = false
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].length === 4) {
+      inLove = true
+    }
   }
+  return inLove
 }
 // ...
 
@@ -205,7 +205,14 @@ const someoneToLove = arrayOfStrings => {
  *
  * So no using forEach, map, filter, reduce, etc.
  */
-
+const mapYourself = arrayOfNumbers => {
+  const newArray = []
+  for (let i = 0; i < arrayOfNumbers.length; i++) {
+    const newNumber = arrayOfNumbers[i]
+    newArray.push(newNumber * 2)
+  }
+  return newArray
+}
 // ...
 
 /*
@@ -217,7 +224,16 @@ const someoneToLove = arrayOfStrings => {
  *
  * So no using forEach, map, filter, reduce, etc.
  */
-
+const filterYourself = arrayOfNumbers => {
+  const numbers = []
+  for (let i = 0; i < arrayOfNumbers.length; i++) {
+    if (arrayOfNumbers[i] % 2 === 0) {
+      const evenNumbers = arrayOfNumbers[i]
+      numbers.push(evenNumbers)
+    }
+  }
+  return numbers
+}
 // ...
 
 /*
@@ -229,6 +245,15 @@ const someoneToLove = arrayOfStrings => {
  *
  * So no using forEach, map, filter, reduce, etc.
  */
+const everyYourself = arrayOfNumbers => {
+  let even = true
+  for (let i = 0; i < arrayOfNumbers.length; i++) {
+    if (arrayOfNumbers[i] % 2 !== 0) {
+      even = false
+    }
+  }
+  return even
+}
 
 // ...
 
